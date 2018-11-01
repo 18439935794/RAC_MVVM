@@ -13,7 +13,7 @@
 #import "ViewController.h"
 #import <RACReturnSignal.h>
 #import <RACEXTScope.h>
-
+#import "TDTabbarVC.h"
 @interface MainViewController ()
 /** 登陆试图 */
 @property (nonatomic, strong) LoginView *loginV;
@@ -35,32 +35,56 @@
     [self RACGesture];
     [self signalBinding];
     [self signalDependence];
-   
+    [self RACUI];
   
 //    retry重试 ：只要失败，就会重新执行创建信号中的block,直到成功.
-    __block int i = 0;
-    [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
-        if (i == 10) {
-            [subscriber sendNext:@1];
-        }else{
-            NSLog(@"接收到错误");
-            [subscriber sendError:nil];
-        }
-        i++;
-        return nil;
-        
-    }] retry] subscribeNext:^(id x) {
-        NSLog(@"%@",x);
-    } error:^(NSError *error) {
-        
+//    __block int i = 0;
+//    [[[RACSignal createSignal:^RACDisposable *(id<RACSubscriber> subscriber) {
+//        if (i == 10) {
+//            [subscriber sendNext:@1];
+//        }else{
+//            NSLog(@"接收到错误");
+//            [subscriber sendError:nil];
+//        }
+//        i++;
+//        return nil;
+//
+//    }] retry] subscribeNext:^(id x) {
+//        NSLog(@"%@",x);
+//    } error:^(NSError *error) {
+//
+//    }];
+    
+    //RAC流程：
+//        1.信号创建
+    RACSignal * signal = [RACSignal  createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+//        3.信号发送
+        [subscriber sendNext:@"ZZ"];
+//        4.信号销毁
+        return [RACDisposable disposableWithBlock:^{
+            NSLog(@"销毁");
+        }];
+       
     }];
     
+//    2.信号订阅
+    [signal  subscribeNext:^(id  _Nullable x) {
+        NSLog(@"信号订阅到了：%@",x);
+    }];
 
     
-    
+    RACCompoundDisposable * dis = [RACCompoundDisposable  compoundDisposable];
+    RACDisposable * disposable;
+//    disposable = [RACCompoundDisposable alloc]init;
     
  
+   
     
+    
+    //1.信号创建
+    //2.信号订阅
+    //3.信号发送
+    //4.信号销毁
 }
 - (void)signalCombination {
     
@@ -114,10 +138,10 @@
     
     [[self.loginV.loginButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
         @strongify(self)
-        ViewController *  vc = [ViewController new];
-        UINavigationController * nvc = [[UINavigationController alloc]initWithRootViewController:vc];
+        TDTabbarVC *  vc = [TDTabbarVC new];
+//        UINavigationController * nvc = [[UINavigationController alloc]initWithRootViewController:vc];
         
-        [self presentViewController:nvc animated:YES completion:nil];
+        [self presentViewController:vc animated:YES completion:nil];
         
         
     }];
@@ -168,6 +192,7 @@
    
     
 }
+//实时获取textField的text
 - (void)filtering {
     
     //过滤
@@ -177,9 +202,12 @@
         
         @strongify(self)
         // YES
-        if (self.loginV.userNameTextField.text.length >6) {
+        if (self.loginV.userNameTextField.text.length > 6) {
             self.loginV.userNameTextField.text = [self.loginV.userNameTextField.text substringToIndex:6];
             self.loginV.weChatLab.text = @"太长了";
+        }else{
+            self.loginV.weChatLab.text = @"微信登录";
+
         }
         return value.length<6;
         
@@ -197,7 +225,7 @@
         
         return [NSString stringWithFormat:@"输出map：%@",value];
     }] subscribeNext:^(id  _Nullable x) {
-        NSLog(@"san%@",x);
+        NSLog(@"san%@",x);//拼接
     }];
     //map：RACSignal
     [[self.loginV.userNameTextField.rac_textSignal  flattenMap:^__kindof RACSignal * _Nullable(NSString * _Nullable value) {
@@ -223,7 +251,7 @@
     
 }
 - (void)RACDictionary {
-    //Tuple:元组
+    //Tuple:元组   遍历
     NSDictionary * dic = @{@"name":@"ZZ",@"age":@"22"};
     [dic.rac_sequence.signal subscribeNext:^(id  _Nullable x) {
         NSLog(@"%@",x);
@@ -239,14 +267,16 @@
     }];
     
 }
+//手势RAC
 - (void)RACGesture {
     
     UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc]init];
     [self.loginV.weChatLab addGestureRecognizer:tap];
     [[tap rac_gestureSignal] subscribeNext:^(__kindof UIGestureRecognizer * _Nullable x) {
-        NSLog(@"%@",x);
+        NSLog(@"点击了微信登录%@",x);
     }];
 }
+//button的点击事件
 - (void)RACUI {
     
     [[self.loginV.loginButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
@@ -260,6 +290,7 @@
     //        NSLog(@"delegate %@",x);
     //    }];
     //    self.userTF.delegate = self;
+    //skip:1   输入第一个  忽略  不会拦截
     
     //监听textField的text
     [[self.loginV.userNameTextField.rac_textSignal skip:1] subscribeNext:^(NSString * _Nullable x) {

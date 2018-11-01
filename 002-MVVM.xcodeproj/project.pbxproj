@@ -10,6 +10,10 @@
 		10D2100092C103A8AC543B46 /* libPods-002-MVVMTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E1587170C646A8E03CB9255A /* libPods-002-MVVMTests.a */; };
 		5F263C15212D431D004FA8E0 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F263C13212D431D004FA8E0 /* LoginView.m */; };
 		5F263C18212D4360004FA8E0 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F263C17212D4360004FA8E0 /* MainViewController.m */; };
+		5F4907B22186F6AA0066FAF8 /* TDTabbarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4907B02186F6AA0066FAF8 /* TDTabbarVC.m */; };
+		5F4907B52186F6CC0066FAF8 /* TDNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4907B42186F6CC0066FAF8 /* TDNavigationController.m */; };
+		5F4907B82186F7030066FAF8 /* BidHallVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4907B72186F7030066FAF8 /* BidHallVC.m */; };
+		5F4907BB2186F8740066FAF8 /* BidHallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F4907BA2186F8740066FAF8 /* BidHallCell.m */; };
 		7A265EBB20710C2200586E66 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A265EBA20710C2200586E66 /* AppDelegate.m */; };
 		7A265EBE20710C2200586E66 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A265EBD20710C2200586E66 /* ViewController.m */; };
 		7A265EC120710C2200586E66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A265EBF20710C2200586E66 /* Main.storyboard */; };
@@ -54,6 +58,14 @@
 		5F263C14212D431D004FA8E0 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
 		5F263C16212D4360004FA8E0 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		5F263C17212D4360004FA8E0 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		5F4907B02186F6AA0066FAF8 /* TDTabbarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDTabbarVC.m; sourceTree = "<group>"; };
+		5F4907B12186F6AA0066FAF8 /* TDTabbarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDTabbarVC.h; sourceTree = "<group>"; };
+		5F4907B32186F6CC0066FAF8 /* TDNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNavigationController.h; sourceTree = "<group>"; };
+		5F4907B42186F6CC0066FAF8 /* TDNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNavigationController.m; sourceTree = "<group>"; };
+		5F4907B62186F7030066FAF8 /* BidHallVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BidHallVC.h; sourceTree = "<group>"; };
+		5F4907B72186F7030066FAF8 /* BidHallVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BidHallVC.m; sourceTree = "<group>"; };
+		5F4907B92186F8740066FAF8 /* BidHallCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BidHallCell.h; sourceTree = "<group>"; };
+		5F4907BA2186F8740066FAF8 /* BidHallCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BidHallCell.m; sourceTree = "<group>"; };
 		75A02C6C98A6A1434D8396DB /* libPods-002-MVVM.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-002-MVVM.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A265EB620710C2200586E66 /* 002-MVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "002-MVVM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A265EB920710C2200586E66 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -143,6 +155,41 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		5F4907AC2186F6140066FAF8 /* BidHall */ = {
+			isa = PBXGroup;
+			children = (
+				5F4907AF2186F6360066FAF8 /* Model */,
+				5F4907AE2186F62F0066FAF8 /* VC */,
+				5F4907AD2186F6290066FAF8 /* View */,
+			);
+			path = BidHall;
+			sourceTree = "<group>";
+		};
+		5F4907AD2186F6290066FAF8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5F4907B92186F8740066FAF8 /* BidHallCell.h */,
+				5F4907BA2186F8740066FAF8 /* BidHallCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5F4907AE2186F62F0066FAF8 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				5F4907B62186F7030066FAF8 /* BidHallVC.h */,
+				5F4907B72186F7030066FAF8 /* BidHallVC.m */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		5F4907AF2186F6360066FAF8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		7A265EAD20710C2200586E66 = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +252,11 @@
 		7A265EEB20710D3000586E66 /* MVVM */ = {
 			isa = PBXGroup;
 			children = (
+				5F4907B32186F6CC0066FAF8 /* TDNavigationController.h */,
+				5F4907B42186F6CC0066FAF8 /* TDNavigationController.m */,
+				5F4907B12186F6AA0066FAF8 /* TDTabbarVC.h */,
+				5F4907B02186F6AA0066FAF8 /* TDTabbarVC.m */,
+				5F4907AC2186F6140066FAF8 /* BidHall */,
 				5F263C12212D4313004FA8E0 /* View */,
 				7A51475A20EDE826008956B2 /* BaseViewModel.h */,
 				7A51475B20EDE826008956B2 /* BaseViewModel.m */,
@@ -413,13 +465,17 @@
 			files = (
 				7A265EF420710DA800586E66 /* MVVMView.m in Sources */,
 				7A51475C20EDE826008956B2 /* BaseViewModel.m in Sources */,
+				5F4907BB2186F8740066FAF8 /* BidHallCell.m in Sources */,
+				5F4907B52186F6CC0066FAF8 /* TDNavigationController.m in Sources */,
 				5F263C15212D431D004FA8E0 /* LoginView.m in Sources */,
 				7A265EBE20710C2200586E66 /* ViewController.m in Sources */,
 				5F263C18212D4360004FA8E0 /* MainViewController.m in Sources */,
 				7A265EF120710D5C00586E66 /* MVVMViewModel.m in Sources */,
 				7A265EC920710C2200586E66 /* main.m in Sources */,
 				7A265EBB20710C2200586E66 /* AppDelegate.m in Sources */,
+				5F4907B22186F6AA0066FAF8 /* TDTabbarVC.m in Sources */,
 				7A265EEE20710D4500586E66 /* Model.m in Sources */,
+				5F4907B82186F7030066FAF8 /* BidHallVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
